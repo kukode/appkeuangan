@@ -34,7 +34,7 @@ include 'navigation.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Dashboard</title>
-
+     <link rel="shortcut icon" href="img/icon.png">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 

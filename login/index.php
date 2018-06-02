@@ -53,7 +53,7 @@ if (isset($_POST['masuk'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login Aplikasi Keuangan</title>
-
+    <link rel="shortcut icon" href="img/icon.png">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 

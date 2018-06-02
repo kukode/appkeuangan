@@ -5,7 +5,7 @@ ob_start();
 ?>
 <div class="ibox-content">
 	<a href="?page=addKegiatan">
-	<button class="btn btn-success dim " type="button" ><i class="fa fa-plus"></i> Data</button>
+	<button class="btn btn-success dim " type="button" ><i class="fa fa-plus"></i> Data Kegiatan</button>
 	</a>
 	
 </div>
@@ -35,7 +35,7 @@ ob_start();
 		          	<tr>
 					<td><?php echo $row['nama_kegiatan'] ?></td>
 				   
-           			<td><a href="?page=editSekda&id=<?php echo $row['id_data'] ?>" class="btn btn-warning">Edit</a>
+           			<td><a href="?page=editKegiatan&id=<?php echo $row['id_kegiatan'] ?>" class="btn btn-warning">Edit</a>
 					
 					<a href="?page=hapusKegiatan&id=<?php echo $row['id_kegiatan'] ?>" class="btn btn-primary">Delete</a>
 					</td>

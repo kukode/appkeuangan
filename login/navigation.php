@@ -21,6 +21,13 @@ switch ($_GET['page']){
 			}
 			break;
 
+	case 'editKegiatan':
+			if ($_GET['page']){
+				include 'inc/kegiatan/editKegiatan.php';
+				$content = $editKegiatan;
+			}
+			break;
+
 	//data program//
 	case 'program':
 		if ($_GET['page']){
@@ -42,8 +49,8 @@ switch ($_GET['page']){
 			break;
 	case 'editProgram':
 			if ($_GET['page']){
-				include 'inc/program/editSekda.php';
-				$content = $editSekda;
+				include 'inc/program/editProgram.php';
+				$content = $editProgram;
 			}
 			break;
 
@@ -88,6 +95,23 @@ switch ($_GET['page']){
 	    if ($_GET['page']){
 	        include 'inc/detailSekda/detailSekda.php';
 	        $content = $detailSekda;
+	        
+	    }
+	    break;
+
+
+	case 'editDetailSekda':
+	    if ($_GET['page']){
+	        include 'inc/detailSekda/editDetailSekda.php';
+	        $content = $editDetailSekda;
+	        
+	    }
+	    break;
+
+	case 'hapusDetailSekda':
+	    if ($_GET['page']){
+	        include 'inc/detailSekda/hapusDetailSekda.php';
+	        $content = $hapusDetailSekda;
 	        
 	    }
 	    break;

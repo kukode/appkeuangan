@@ -10,9 +10,11 @@ $sql = "select * from tm_data
 
 $result = mysqli_query($link,$sql);
 while ($row = mysqli_fetch_array($result)){
-	
-	$nama_program = strtoupper($row['nama_program']);
-	$total_anggaran = "Rp. ". number_format($row['total_anggaran'],2);
+    $tanggal = $row['tgl_update'];
+    $nama_program = strtoupper($row['nama_program']);
+    $nama_kegiatan = strtoupper($row['nama_kegiatan']);
+    $total_anggaran = "Rp. " . number_format($row['total_anggaran'],2);
+    	
     $bagian =  $row['bagian'];
     $asisten =  $row['asisten'];
 	
@@ -107,9 +109,9 @@ else {
             <td>{$persen}%</td>
             <td>{$sisa_anggaran}</td>
             <td>
-			<a href=?page=editFinance&id={$row['id_inv']} data-toggle=\"tooltip\" data-placement=\"top\" title=\"edit\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a>
-            <a href=?page=hapusFinance&id={$row['id_inv']} data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
-			<a href=?page=detailFinance&id={$row['id_inv']} data-toggle=\"tooltip\" data-placement=\"top\" title=\"detail pembayaran\"><i class=\"fa fa-file\" aria-hidden=\"true\"></i></a>
+			<a href=?page=editDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a>
+            <a href=?page=hapusDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+			
 			</td>
 			
 			</tr>";
@@ -139,10 +141,7 @@ if (isset($_POST['print']))
            $asisten = $datas['asisten'];
            $tgl_update = $datas['tgl_update'];
            
-           $tanggal = $datas['tgl_update'];
-           $nama_program = strtoupper($datas['nama_program']);
-           $nama_kegiatan = strtoupper($datas['nama_kegiatan']);
-           $total_anggaran = "Rp. " . number_format($datas['total_anggaran'],2);
+           
 
            $kode_rek_uraian = $datas['kode_rek_uraian'];
            $tgl_uraian = $datas['tgl_uraian'];
@@ -207,7 +206,7 @@ if (isset($_POST['print']))
     
     
     $print_content .= "<div>Tanggal :</div>";
-    $print_content .= "<div>{$tgl_update}</div>";
+    $print_content .= "<div>{$tanggal}</div>";
     $print_content .= "<div>Nama Program :</div>";
     $print_content .= "<div>{$nama_program}</div>";
     $print_content .= "<div>Nama Kegiatan :</div>";

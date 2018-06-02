@@ -46,7 +46,7 @@ include 'navigation.php';
   <link rel="stylesheet" href="assets/css/unify-globals.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
@@ -72,8 +72,8 @@ include 'navigation.php';
             <!-- End Responsive Toggle Button -->
 
             <!-- Logo -->
-            <a href="index.html" class="navbar-brand">
-              <img src="assets/img/logo.jpg" alt="Unify Logo">
+            <a href="http://localhost/appkeuangansetda/" class="navbar-brand">
+              <img src="assets/img/logo.png" alt="Unify Logo">
             </a>
             <!-- End Logo -->
 
@@ -230,7 +230,7 @@ include 'navigation.php';
 
   <!-- JS Customization -->
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js "></script>
+    
 
   <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
   <script src="assets/js/custom.js"></script>
@@ -285,7 +285,12 @@ include 'navigation.php';
    <script type="text/javascript">
         $(document).ready(function(){
 
-            $('#table_id').DataTable();
+            $('#asisten').DataTable({
+              scrollX : true
+            });
+            $('#bagian').DataTable({
+              scrollX : true
+            });
 
             $('.slider').bxSlider({
               mode : 'horizontal',

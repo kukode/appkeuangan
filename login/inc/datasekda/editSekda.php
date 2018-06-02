@@ -7,7 +7,8 @@ if (isset($_POST['update'])){
 
 	$bagian = $_POST['bagian'];
     $asisten = $_POST['asisten'];
-    $nama_program = $_POST['nama_program'];
+    $id_program = $_POST['id_program'];
+    $id_kegiatan = $_POST['id_kegiatan'];
     $total_anggaran = $_POST['total_anggaran'];
     $tanggal = date('Y-m-d',strtotime($_POST['tgl_update']));
     
@@ -15,7 +16,7 @@ if (isset($_POST['update'])){
     //$total_persen = ($realisasi / 100) / ($anggaran / 100) * 100; 
     //$total_sisa_anggran = $anggaran - $realisasi;
         
-		$query = "update tm_data set bagian='$bagian',asisten='$asisten',tgl_update= '$tanggal',nama_program='$nama_program',total_anggaran='$total_anggaran' where tm_data.id_data = '$id'";
+		$query = "update tm_data set bagian='$bagian',asisten='$asisten',tgl_update= '$tanggal',id_program='$id_program',id_kegiatan='$id_kegiatan',total_anggaran='$total_anggaran' where tm_data.id_data = '$id'";
 		$result = mysqli_query($link, $query);
 		if ($result)
 		{
@@ -31,7 +32,8 @@ else {
 	$sql = "SELECT * FROM tm_data  where tm_data.id_data = '$id'";
 	$result = mysqli_query($link,$sql);
 	$row = mysqli_fetch_assoc($result);
-	
+	$idProgram = $row['id_program'];
+    $idKegiatan = $row['id_kegiatan'];
 ?>
 <div class="col-lg-12">
     <div class="ibox float-e-margins">
@@ -65,18 +67,72 @@ else {
                         <div class="form-group">
                           <label class="col-sm-3 control-label">Pilih Asisten <span>*</span></label>
                           <select name="asisten" class="form-control" style="width: 70%">
-                            <option value="1" <?php if($row['bagian'] == "1"){ echo "selected";} ?> >ASISTEN PEMERINTAHAN</option>
-                            <option value="2" <?php if($row['bagian'] == "2"){ echo "selected";} ?> >ASISTEN PEREKONOMIAN DAN PEMBANGUNAN</option>
-                            <option value="3" <?php if($row['bagian'] == "3"){ echo "selected";} ?> >ASISTEN ADMINISTRASI</option>
+                            <option value="1" <?php if($row['asisten'] == "1"){ echo "selected";} ?> >ASISTEN PEMERINTAHAN</option>
+                            <option value="2" <?php if($row['asisten'] == "2"){ echo "selected";} ?> >ASISTEN PEREKONOMIAN DAN PEMBANGUNAN</option>
+                            <option value="3" <?php if($row['asisten'] == "3"){ echo "selected";} ?> >ASISTEN ADMINISTRASI</option>
                             
                           </select>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label"> Tanggal Program </label>
                           <input type="date" class="form-control" name="tgl_update" value="<?php echo $row['tgl_update'] ?>" style="width: 70%"  />
                         </div>
-                        <div class="form-group"><label class="col-sm-3 control-label"> Nama Program <span>*</span></label>
-                          <input type="text" class="form-control" name="nama_program"   style="width: 70%"  value="<?php echo $row['nama_program'] ?>" />
+
+                        <div class="form-group"><label class="col-sm-3 control-label">Nama Program</label>
+                                        
+                            <select class="form-control m-b" name="id_program" style="width: 70%;">
+                                <?php 
+                                   $queryProgram = "select * from tm_program order by nama_program";
+                                   $resultProgram = mysqli_query($link, $queryProgram);
+                                   while ($data = mysqli_fetch_assoc($resultProgram))
+                                   {
+                                    $idProg = $data['id_program'];
+                                    $program_name = $data['nama_program'];
+                                    if ($idProgram == $idProg)
+                                    {
+                                         $selected = "selected";
+                                         print ("<option value=\"$idProg\""."$selected>$program_name</option>");
+                                    }
+                                    else {
+                                        $selected = "";
+                                        print ("<option value=\"$idProg\""."$selected>$program_name</option>");
+                                    }
+                                    
+                                   }
+                            ?>
+                             
+                            
+                            </select>
+                           
                         </div>
+
+                        <div class="form-group"><label class="col-sm-3 control-label">Nama Kegiatan</label>
+                                        
+                            <select class="form-control m-b" name="id_kegiatan" style="width: 70%;">
+                                <?php 
+                                   $queryKegiatan = "select * from tm_kegiatan order by nama_kegiatan";
+                                   $resultKegiatan = mysqli_query($link, $queryKegiatan);
+                                   while ($data = mysqli_fetch_assoc($resultKegiatan))
+                                   {
+                                    $idKeg = $data['id_kegiatan'];
+                                    $activity_name = $data['nama_kegiatan'];
+                                    if ($idKegiatan == $idKeg)
+                                    {
+                                         $selected = "selected";
+                                         print ("<option value=\"$idKeg\""."$selected>$activity_name</option>");
+                                    }
+                                    else {
+                                        $selected = "";
+                                        print ("<option value=\"$idKeg\""."$selected>$activity_name</option>");
+                                    }
+                                    
+                                   }
+                            ?>
+                             
+                            
+                            </select>
+                           
+                        </div>
+
                         <div class="form-group"><label class="col-sm-3 control-label">Total Anggaran <span>*</span></label>
                           <input type="text" class="form-control" name="total_anggaran"   style="width: 70%" value="<?php echo $row['total_anggaran'] ?>" />
                         </div>

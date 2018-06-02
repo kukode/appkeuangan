@@ -5,7 +5,7 @@ ob_start();
 
 <h1 class="text-center">Bagian Umum</h1>
 <section class="g-mb-150 g-mt-50">
-	<table id="table_id" class="table table-striped ">
+	<table id="bagian" class="display" width="100%">
 	    <thead>
 	        <tr class="text-center">
 	            <th style="background-color: #47d147;color: #fff;">Program</th>

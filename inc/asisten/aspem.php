@@ -4,8 +4,9 @@ ob_start();
 
 
 <section class="g-mb-150 g-mt-50">
+
 	<h1 class="text-center">Asisten Pemerintahan</h1>
-	<table id="table_id" class="table table-striped ">
+	<table id="asisten"  class="display" width="100%">
 	    <thead>
 	        <tr class="text-center">
 	        	<th style="background-color: #47d147;color: #fff;">Bagian</th>
