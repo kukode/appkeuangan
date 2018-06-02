@@ -14,7 +14,9 @@ ob_start();
           <div>
             <img src="assets/img/slide/3.jpg" class="img-fluid" style="width: 100%;">
           </div>
-        
+          <div>
+            <img src="assets/img/slide/4.jpg" class="img-fluid" style="width: 100%;">
+          </div>
       </div>
     </section>
     <!-- End Promo Block -->
