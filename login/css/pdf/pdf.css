@@ -1,0 +1,25 @@
+p#logo{
+	margin-left: 130px;
+}
+table#data, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table#dataBagian, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 100px;
+}
+tbody#data-center{
+	text-align: center;
+}
+thead#data-center{
+	text-align: center;
+}
+h3{
+	text-align: center;
+}
+th#nama-prog {
+	width:300px;
+}
