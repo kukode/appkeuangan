@@ -110,7 +110,7 @@ $query = "select * from tm_data
 	      <tr class="g-bg-primary g-col-border-top-0">
 	        <th class="g-brd-white-opacity-0_1">Tanggal</th>
 	        <th class="g-brd-white-opacity-0_1">Uraian</th>
-	        <th class="g-brd-white-opacity-0_1">Anggaran</th>
+	        
 	        <th class="g-brd-white-opacity-0_1">Realisasi</th>
 	        <th class="g-brd-white-opacity-0_1">%</th>
 	        <th class="g-brd-white-opacity-0_1">Sisa Anggaran</th>
@@ -124,7 +124,7 @@ $query = "select * from tm_data
 			{
 				while ($rows = mysqli_fetch_array($result)){
 					$tanggal = date('d-m-Y', strtotime($rows['tgl_uraian']));
-		            $anggaran = "Rp. ". number_format($rows['anggaran'],2);
+		            
 		            $realisasi = "Rp. ". number_format($rows['realisasi'],2);
 		            $sisa_anggaran  = "Rp. ". number_format($rows['sisa_anggaran'],2);
 		            $persen = substr($rows['persen'],0,4);
@@ -132,10 +132,10 @@ $query = "select * from tm_data
 			
 	    ?>
 	    <tbody class="g-font-size-12 g-color-white-opacity-0_5 g-font-weight-600">
-	      <tr class="g-color-white-opacity-0_8">
+	      <tr class="g-color-white-opacity-0_8" style="background-color: blue;">
 	        <th class="g-brd-white-opacity-0_1" scope="row"><?php echo $tanggal;?> </th>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $rows['uraian'];?></td>
-	        <td class="g-brd-white-opacity-0_1"><?php echo $anggaran;?></td>
+	       
 	        <td class="g-brd-white-opacity-0_1"><?php echo $realisasi;?></td>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $persen;?>%</td>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $sisa_anggaran;?></td>

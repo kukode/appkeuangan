@@ -99,7 +99,7 @@ include 'navigation.php';
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Keuangan</a>
+                      <a class="nav-link" href="?page=keuangan">Bagian Keuangan</a>
                     </li>
 
                      <li class="dropdown-item ">
@@ -160,13 +160,19 @@ include 'navigation.php';
                      <li class="dropdown-item ">
                       <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Asisten Administrasi</a>
                     </li>
+                     
 
                     
                    
                   </ul>
                 </li>
                 <!-- End Features -->
-                
+                <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                  <a class="nav-link g-py-7 g-px-0" href="?page=ranking">Ranking</a>
+                </li>
+                <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                  <a class="nav-link g-py-7 g-px-0" href="#">Login</a>
+                </li>
               </ul>
             </div>
             <!-- End Navigation -->
@@ -186,7 +192,7 @@ include 'navigation.php';
     <footer class="g-bg-gray-dark-v1 g-color-white-opacity-0_8 g-py-20 text-center" >
       <div class="container">
        
-              <small class="d-block g-font-size-default g-mr-10 g-mb-10 g-mb-0--md ">2018 &copy; Siratris</small>
+              <small class="d-block g-font-size-default g-mr-10 g-mb-10 g-mb-0--md ">2018 &copy; Sinergi</small>
    
       </div>
     </footer>

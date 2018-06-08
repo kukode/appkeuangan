@@ -1,13 +1,24 @@
 <?php
 switch ($_GET['page']){
 
-	
+	case 'ranking':
+		if ($_GET['page']){
+			include 'inc/ranking.php';
+			$content = $ranking;
+		}
+		break;
 			
 	//bagian//
 	case 'umum':
 		if ($_GET['page']){
 			include 'inc/bagian/umum.php';
 			$content = $umum;
+		}
+		break;
+	case 'keuangan':
+		if ($_GET['page']){
+			include 'inc/bagian/keuangan.php';
+			$content = $keuangan;
 		}
 		break;
 			
