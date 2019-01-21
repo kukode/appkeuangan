@@ -3,7 +3,7 @@ ob_start();
 if (isset($_POST['simpan']))
 {
 	
-	
+	$subbelanja = $_POST['subbelanja'];
 	$bagian = $_POST['bagian'];
 	$asisten = $_POST['asisten'];
 	$tanggal = date('Y-m-d',strtotime($_POST['tgl_update']));
@@ -11,6 +11,7 @@ if (isset($_POST['simpan']))
 	$id_program = $_POST['id_program'];
 	$id_kegiatan = $_POST['id_kegiatan'];
 	$total_anggaran = $_POST['total_anggaran'];
+	$data_sisa = $_POST['data_sisa'];
 	//$persen = $_POST['persen'];
 	//$sisa_anggaran = $_POST['sisa_anggaran'];
 
@@ -18,8 +19,8 @@ if (isset($_POST['simpan']))
 	//$total_sisa_anggran = $anggaran - $realisasi;
 
 	
-	$query = "insert into tm_data(bagian,asisten,tgl_update,id_program,id_kegiatan,total_anggaran) 
-	values('$bagian','$asisten','$tanggal','$id_program','$id_kegiatan','$total_anggaran')";
+	$query = "insert into tm_data(subbelanja,bagian,asisten,tgl_update,id_program,id_kegiatan,total_anggaran,data_sisa) 
+	values('$subbelanja','$bagian','$asisten','$tanggal','$id_program','$id_kegiatan','$total_anggaran','$data_sisa')";
 	$result = mysqli_query($link, $query);
 	if ($result)
 	{
@@ -39,13 +40,22 @@ if (isset($_POST['simpan']))
 	<div class="ibox-content">
 		<form method="post">
 			<div class="form-group">
+			  <label class="col-sm-3 control-label">Pilih Sub Belanja <span>*</span></label>
+			  <select name="subbelanja" class="form-control" style="width: 70%">
+			  	<option value="1">Belanja Barang dan Jasa</option>
+			  	<option value="2">Belanja Modal</option>
+			  	<option value="3">Belanja Pegawai</option>
+			  	
+			  </select>
+			</div>
+			<div class="form-group">
 			  <label class="col-sm-3 control-label">Pilih Bagian <span>*</span></label>
 			  <select name="bagian" class="form-control" style="width: 70%">
 			  	<option value="1">BAGIAN UMUM</option>
 			  	<option value="2">BAGIAN KEUANGAN</option>
 			  	<option value="3">BAGIAN KERJASAMA</option>
 			  	<option value="4">BAGIAN PERUNDANG - UNDANGAN</option>
-			  	<option value="5">BAGIAN ADMINISTRASI PEMERINTAHAN</option>
+			  	<option value="5">BAGIAN ADMINISTRASI PEMERINTAHAN</option>	
 			  	<option value="6">BAGIAN KESEJAHTERAAN RAKYAT</option>
 			  	<option value="7">BAGIAN PEREKONOMIAN</option>
 			  	<option value="8">BAGIAN ORGANSASI</option>
@@ -58,7 +68,7 @@ if (isset($_POST['simpan']))
 			<div class="form-group">
 			  <label class="col-sm-3 control-label">Pilih Asisten <span>*</span></label>
 			  <select name="asisten" class="form-control" style="width: 70%">
-			  	<option value="1">ASISTEN PEMERINTAHAN</option>
+			  	<option value="1">ASISTEN PEMERINTAHAN DAN KESEJAHTERAAN RAKYAT</option>
 			  	<option value="2">ASISTEN PEREKONOMIAN DAN PEMBANGUNAN</option>
 			  	<option value="3">ASISTEN ADMINISTRASI</option>
 			  	
@@ -107,8 +117,12 @@ if (isset($_POST['simpan']))
 			  	
 			  </select>
 			</div>
-			<div class="form-group"><label class="col-sm-3 control-label"> Anggaran <span>*</span></label>
+			<div class="form-group"><label class="col-sm-3 control-label">Total Anggaran <span>*</span></label>
 			  <input type="text" class="form-control" name="total_anggaran" placeholder="Masukan  Anggaran" required="required" style="width: 70%"  />
+			</div>
+
+			<div class="form-group"><label class="col-sm-3 control-label">Realisasi Anggaran  <span>*</span></label>
+			  <input type="text" class="form-control" name="data_sisa" placeholder="Masukan  Anggaran" required="required" style="width: 70%"  />
 			</div>
 			
 

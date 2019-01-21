@@ -5,7 +5,7 @@ ob_start();
 ?>
 <div class="ibox-content">
 	<a href="?page=addSekda">
-	<button class="btn btn-success dim " type="button" ><i class="fa fa-plus"></i> Data</button>
+	<button class="btn btn-success dim " type="button" ><i class="fa fa-plus"></i> Data Setda BL</button>
 	</a>
 	<a href="?page=laporanBagian">
 	<button class="btn btn-danger dim " type="button" ><i class="fa fa-plus"></i> Laporan Bagian</button>
@@ -17,6 +17,7 @@ ob_start();
 		 <table class="table table-striped table-bordered table-hover dataTables-example" >
 		      <thead>
 		         <tr>
+		           <th>Sub Belanja</th>
 	         	   <th>Bagian</th>
 	         	   <th>Asisten</th>
 	         	   <th>Tanggal</th>
@@ -41,6 +42,7 @@ ob_start();
 							$tanggal = date('d-m-Y' , strtotime($row['tanggal']));
 							$bagian =  $row['bagian'];
 							$asisten =  $row['asisten'];
+							$subbelanja =  $row['subbelanja'];
 
 							if ($bagian == 1) {
 								$bagian = "Bagian UMUM";
@@ -84,9 +86,19 @@ ob_start();
 							if ($asisten == 3) {
 								$asisten = "ASISTEN ADMINISTRASI";
 							}
+							if ($subbelanja == 1) {
+								$subbelanja = "Belanja Barang dan Jasa";
+							}
+							if ($subbelanja == 2) {
+								$subbelanja = "Belanja Modal";
+							}
+							if ($subbelanja == 3) {
+								$subbelanja = "Belanja Pegawai";
+							}
 
 		          ?>
 		          	<tr>
+		          	<td><?php echo $subbelanja ?></td>
 					<td><?php echo $bagian ?></td>
 					<td><?php echo $asisten ?></td>
 					<td><?php echo $row['tgl_update'] ?></td>

@@ -13,6 +13,7 @@ $query = "select * from tm_data
 			
 			$nama_program = strtoupper($row['nama_program']);
 			$total_anggaran = "Rp. ". number_format($row['total_anggaran'],2);
+			$data_sisa = "Rp. ". number_format($row['data_sisa'],2);
 		    $bagian =  $row['bagian'];
 		    $asisten =  $row['asisten'];
 			
@@ -77,6 +78,7 @@ $query = "select * from tm_data
                 <td><?php echo $row['tgl_update'];?></td>
               </tr>  
 
+
 		      <tr style="border: none;">
 		        <td><b>Nama Program</b></td>
 		        <td>:</td>
@@ -91,6 +93,11 @@ $query = "select * from tm_data
 		        <td><b>Total Anggaran</b></td>
 		        <td>:</td>
 		        <td><?php echo $total_anggaran?></td>
+		      </tr>
+			  <tr>
+		        <td><b>Data Sisa</b></td>
+		        <td>:</td>
+		        <td><?php echo $data_sisa?></td>
 		      </tr>
 		      
 		      </tbody>
@@ -109,6 +116,7 @@ $query = "select * from tm_data
 	    <thead>
 	      <tr class="g-bg-primary g-col-border-top-0">
 	        <th class="g-brd-white-opacity-0_1">Tanggal</th>
+	        <th class="g-brd-white-opacity-0_1">Kode Rekening</th>
 	        <th class="g-brd-white-opacity-0_1">Uraian</th>
 	        
 	        <th class="g-brd-white-opacity-0_1">Realisasi</th>
@@ -118,13 +126,19 @@ $query = "select * from tm_data
 	      </tr>
 	    </thead>
 	    <?php
-	    	$query = "select * from tm_detail_data where tm_detail_data.id_data = '$id'";
+			$totalsum = "select SUM(tm_detail_data.realisasi) as jumlah  from tm_detail_data where tm_detail_data.id_data = '$id'";
+			$ressum = mysqli_query($link,$totalsum);
+
+			$hasilsum = mysqli_fetch_array($ressum);
+			
+
+	    	$query = "select * from tm_detail_data where tm_detail_data.id_data = '$id' order by tgl_uraian asc";
 			$result = mysqli_query($link,$query);
 			if (mysqli_num_rows($result) > 0)
 			{
 				while ($rows = mysqli_fetch_array($result)){
 					$tanggal = date('d-m-Y', strtotime($rows['tgl_uraian']));
-		            
+		            $anggaran = "Rp. ". number_format($rows['anggaran'],2);
 		            $realisasi = "Rp. ". number_format($rows['realisasi'],2);
 		            $sisa_anggaran  = "Rp. ". number_format($rows['sisa_anggaran'],2);
 		            $persen = substr($rows['persen'],0,4);
@@ -132,10 +146,11 @@ $query = "select * from tm_data
 			
 	    ?>
 	    <tbody class="g-font-size-12 g-color-white-opacity-0_5 g-font-weight-600">
-	      <tr class="g-color-white-opacity-0_8" style="background-color: blue;">
-	        <th class="g-brd-white-opacity-0_1" scope="row"><?php echo $tanggal;?> </th>
+	      <tr class="g-color-white-opacity-0_8 g-bg-blue">
+	        <td class="g-brd-white-opacity-0_1" scope="row"><?php echo $tanggal;?> </td>
+	         <td class="g-brd-white-opacity-0_1"><?php echo $rows['kode_rek_uraian'];?></td>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $rows['uraian'];?></td>
-	       
+	        
 	        <td class="g-brd-white-opacity-0_1"><?php echo $realisasi;?></td>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $persen;?>%</td>
 	        <td class="g-brd-white-opacity-0_1"><?php echo $sisa_anggaran;?></td>
@@ -150,6 +165,11 @@ $query = "select * from tm_data
 	      		}
 	      ?>
 	    </tbody>
+		<tfoot>
+			<tr>
+				<td>Total : Rp. <?php echo number_format($hasilsum['jumlah'],2)  ?></td>
+			</tr>
+		</tfoot>
 	  </table>
 	</div>
 	<!-- End Table Schedule -->

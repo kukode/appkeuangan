@@ -80,7 +80,57 @@ switch ($_GET['page']){
 			}
 			break;
 
+	//data kepda//
+	case 'dataKepda':
+		if ($_GET['page']){
+			include 'inc/datakepda/datakepda.php';
+			$content = $datakepda;
+		}
+		break;
+	case 'addKepda':
+			if ($_GET['page']){
+				include 'inc/datakepda/addKepda.php';
+				$content = $addKepda;
+			}
+			break;
+	case 'hapusKepda':
+			if ($_GET['page']){
+				include 'inc/datakepda/hapusKepda.php';
+				$content = $hapusKepda;
+			}
+			break;
+	case 'editKepda':
+			if ($_GET['page']){
+				include 'inc/datakepda/editKepda.php';
+				$content = $editKepda;
+			}
+			break;
 
+	//data setda btl//
+	case 'datasetdabtl':
+		if ($_GET['page']){
+			include 'inc/setdabtl/setdabtl.php';
+			$content = $datasetdabtl;
+		}
+		break;
+	case 'addsetdabtl':
+			if ($_GET['page']){
+				include 'inc/setdabtl/addsetdabtl.php';
+				$content = $addsetdabtl;
+			}
+			break;
+	case 'hapussetdabtl':
+			if ($_GET['page']){
+				include 'inc/setdabtl/hapussetdabtl.php';
+				$content = $hapussetdabtl;
+			}
+			break;
+	case 'editsetdabtl':
+			if ($_GET['page']){
+				include 'inc/setdabtl/editsetdabtl.php';
+				$content = $editsetdabtl;
+			}
+			break;
 
 	//laporan//
 	case 'laporanBagian':
@@ -114,7 +164,15 @@ switch ($_GET['page']){
 	        $content = $hapusDetailSekda;
 	        
 	    }
-	    break;
+		break;
+	case 'kalkulasiDetailSekda':
+	    if ($_GET['page']){
+	        include 'inc/detailSekda/kalkulasidetailSekda.php';
+	        $content = $kalkulasiDetailSekda;
+	        
+	    }
+		break;
+	
 			
 	//user//
 	case 'user':

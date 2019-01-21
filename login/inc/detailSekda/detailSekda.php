@@ -14,6 +14,7 @@ while ($row = mysqli_fetch_array($result)){
     $nama_program = strtoupper($row['nama_program']);
     $nama_kegiatan = strtoupper($row['nama_kegiatan']);
     $total_anggaran = "Rp. " . number_format($row['total_anggaran'],2);
+    $data_sisa = "Rp. " . number_format($row['data_sisa'],2);
     	
     $bagian =  $row['bagian'];
     $asisten =  $row['asisten'];
@@ -62,25 +63,44 @@ while ($row = mysqli_fetch_array($result)){
     }
 
 	
-	
+	// print_r($row);
 
 if (isset($_POST['simpan']))
 {
-	$id = abs($_GET['id']);
+    $id = abs($_GET['id']);
+    
 	$tgl_uraian = date('Y-m-d',strtotime($_POST['tgl_uraian']));
     $kode_rek_uraian = $_POST['kode_rek_uraian'];
     $uraian = $_POST['uraian'];
-    $anggaran = $_POST['anggaran'];
+    $anggaran = $row['data_sisa'];
     $realisasi = $_POST['realisasi'];
 
     $total_persen = ($realisasi / 100) / ($anggaran / 100) * 100; 
     $total_sisa_anggran = $anggaran - $realisasi;
+    
+    $query = "UPDATE tm_data SET data_sisa = '$total_sisa_anggran' WHERE id_data = '$id'";
+	$result = mysqli_query($link,$query);
 	
-	
-	$query = "insert into tm_detail_data(id_data,tgl_uraian,kode_rek_uraian,uraian,anggaran,realisasi,persen,sisa_anggaran)
-	values('$id','$tgl_uraian','$kode_rek_uraian','$uraian','$anggaran','$realisasi','$total_persen','$total_sisa_anggran')";
+	$query = "insert into tm_detail_data(id_data,tgl_uraian,kode_rek_uraian,uraian,realisasi,persen,sisa_anggaran)
+	values('$id','$tgl_uraian','$kode_rek_uraian','$uraian','$realisasi','$total_persen','$total_sisa_anggran')";
 	$result = mysqli_query($link, $query);
 	if ($result){
+		echo "<script>alert('sukses');window.location.assign(\"page.php?page=detailSekda&id={$row['id_data']}\")</script>";
+	}
+	else {
+		echo "<script>alert('gagal');window.location.assign(\"page.php?page=detailSekda&id={$row['id_data']}\")</script>";
+	}
+	
+}
+
+if(isset($_POST['kalkulasi'])){
+    $anggaran = $row['data_sisa'];
+    $realisasi = $row['realisasi'];
+    $total_sisa_anggran = $anggaran - $realisasi;
+
+    $query = "UPDATE tm_detail_data SET sisa_anggaran = '$total_sisa_anggran' WHERE id_detail_data = '$id'";
+    $result = mysqli_query($link,$query);
+    if ($result){
 		echo "<script>alert('sukses');window.location.assign(\"page.php?page=detailSekda&id={$row['id_data']}\")</script>";
 	}
 	else {
@@ -96,7 +116,7 @@ else {
 	{
 		while ($rows = mysqli_fetch_array($result)){
 			$tanggal = date('d-m-Y', strtotime($rows['tgl_uraian']));
-            $anggaran = "Rp. ". number_format($rows['anggaran'],2);
+            //$anggaran = "Rp. ". number_format($rows['anggaran'],2);
             $realisasi = "Rp. ". number_format($rows['realisasi'],2);
             $sisa_anggaran  = "Rp. ". number_format($rows['sisa_anggaran'],2);
             $persen = substr($rows['persen'],0,4);
@@ -104,13 +124,14 @@ else {
 			
 			<td>{$tanggal}</td>
 			<td>{$rows['uraian']}</td>
-            <td>{$anggaran}</td>
+           
             <td>{$realisasi}</td>
             <td>{$persen}%</td>
             <td>{$sisa_anggaran}</td>
             <td>
-			<a href=?page=editDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></a>
+			<a href=?page=editDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-edit\" aria-hidden=\"true\"></i></a>
             <a href=?page=hapusDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>
+            <a href=?page=kalkulasiDetailSekda&id={$rows['id_detail_data']} ><i class=\"fa fa-sync-alt\" aria-hidden=\"true\"></i></a>
 			
 			</td>
 			
@@ -146,7 +167,7 @@ if (isset($_POST['print']))
            $kode_rek_uraian = $datas['kode_rek_uraian'];
            $tgl_uraian = $datas['tgl_uraian'];
            $uraian = $datas['uraian'];
-           $anggaran = "Rp. " . number_format($datas['anggaran'],2);
+           $anggaran = "Rp. " . number_format($datas['total_anggaran'],2);
            $realisasi = "Rp. " . number_format($datas['realisasi'],2);
            $persen = substr($datas['persen'], 0,4);
            $sisa_anggaran = "Rp. " . number_format($datas['sisa_anggaran'],2);
@@ -280,6 +301,11 @@ if (isset($_POST['print']))
 		        <td>:</td>
 		        <td><?php echo $total_anggaran?></td>
 		      </tr>
+              <tr>
+		        <td><b>Sisa Anggaran</b></td>
+		        <td>:</td>
+		        <td><?php echo $data_sisa?></td>
+		      </tr>
 		      
 		      </tbody>
 		</table>
@@ -293,7 +319,9 @@ if (isset($_POST['print']))
 <form method="post">
 
  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> + Tambah  Tagihan</button>
- 
+<!-- <form method="post">
+ <button type="submit" class="btn btn-primary" name="kalkulasi"> + Kalkulasi</button>
+ </form> -->
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -309,7 +337,7 @@ if (isset($_POST['print']))
        <label class="control-label">Uraian :</label>
        <input type="text" class="form-control" name="uraian">
         <label class="control-label">Anggaran :</label>
-       <input type="text" class="form-control" name="anggaran" value="<?php echo $row['total_anggaran'] ?>" readonly="readonly">
+       <input type="text" class="form-control" name="data_sisa" value="<?php echo $row['data_sisa'] ?>" readonly="readonly">
         <label class="control-label">Realisasi :</label>
        <input type="text" class="form-control" name="realisasi">
        
@@ -334,7 +362,6 @@ if (isset($_POST['print']))
            
             <th>Tanggal</th>
              <th>Uraian</th>
-             <th>Anggaran</th>
              <th>Realisasi</th>
              <th>%</th>
              <th>Sisa Anggaran</th>

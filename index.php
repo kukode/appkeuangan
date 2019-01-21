@@ -21,7 +21,8 @@ include 'navigation.php';
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/img/icon.png">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet"> 
+  <!-- <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">  -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <!-- CSS Global Compulsory -->
   <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
   <!-- CSS Global Icons -->
@@ -52,7 +53,7 @@ include 'navigation.php';
 </head>
 
 <body>
-  <main style="font-family: 'Space Mono', monospace;font-size: 14px;">
+  <main style="font-family: 'Open Sans', sans-serif;">
 
 
 
@@ -72,7 +73,7 @@ include 'navigation.php';
             <!-- End Responsive Toggle Button -->
 
             <!-- Logo -->
-            <a href="http://localhost/appkeuangansetda/" class="navbar-brand">
+            <a href="http://sinergi.bogorkab.go.id/" class="navbar-brand">
               <img src="assets/img/logo.png" alt="Unify Logo">
             </a>
             <!-- End Logo -->
@@ -82,7 +83,7 @@ include 'navigation.php';
               <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
                 <!-- Intro -->
                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                  <a class="nav-link g-py-7 g-px-0" href="http://localhost/appkeuangansetda/">Beranda</a>
+                  <a class="nav-link g-py-7 g-px-0" href="http://sinergi.bogorkab.go.id/">Beranda</a>
                 </li>
                 <!-- End Intro -->
 
@@ -103,39 +104,39 @@ include 'navigation.php';
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Kerjasama</a>
+                      <a class="nav-link" href="?page=kerjasama">Bagian Kerjasama</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Perundang - Undangan</a>
+                      <a class="nav-link" href="?page=undang">Bagian Perundang - Undangan</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Administrasi Pemerintahan</a>
+                      <a class="nav-link" href="?page=adpem">Bagian Administrasi Pemerintahan</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Kesejahteraan Rakyat</a>
+                      <a class="nav-link" href="?page=kesra">Bagian Kesejahteraan Rakyat</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Perekonomian</a>
+                      <a class="nav-link" href="?page=ekonomi">Bagian Perekonomian</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Organisasi</a>
+                      <a class="nav-link" href="?page=organisasi">Bagian Organisasi</a>
                     </li>
                     
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Progdalbang</a>
+                      <a class="nav-link" href="?page=progdalbang">Bagian Progdalbang</a>
                     </li>
 
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Pengadaan Barang/Jasa</a>
+                      <a class="nav-link" href="?page=barangjasa">Bagian Pengadaan Barang/Jasa</a>
                     </li>
 
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Bagian Bantuan Hukum</a>
+                      <a class="nav-link" href="?page=hukum">Bagian Bantuan Hukum</a>
                     </li>
                    
                   </ul>
@@ -150,15 +151,18 @@ include 'navigation.php';
                   <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
                    
                     <li class="dropdown-item ">
-                      <a class="nav-link" href="?page=aspem">Asisten Pemerintahan</a>
+                      <a class="nav-link" href="?page=aspem">Asisten Pemerintahan dan Kesejahteraan Rakyat</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Asisten Perekonomian dan Pembangunan</a>
+                      <a class="nav-link" href="?page=asper">Asisten Perekonomian dan Pembangunan</a>
                     </li>
 
                      <li class="dropdown-item ">
-                      <a class="nav-link" href="unify-main/shortcodes/headers/index.html">Asisten Administrasi</a>
+                      <a class="nav-link" href="?page=asmin">Asisten Administrasi</a>
+                    </li>
+                    <li class="dropdown-item ">
+                      <a class="nav-link" href="#">Rekapitulasi Realisasi Anggaran</a>
                     </li>
                      
 
@@ -166,14 +170,32 @@ include 'navigation.php';
                    
                   </ul>
                 </li>
+
+                <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                  <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#!" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">LRA</a>
+
+                  <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
+                   
+                    <li class="dropdown-item ">
+                      <a class="nav-link" href="?page=lra">Setda</a>
+                    </li>
+
+                     <li class="dropdown-item ">
+                      <a class="nav-link" href="?page=lrakepda">Kepda</a>
+                    </li>
+
+ 
+                  </ul>
+                </li>
+                
                 <!-- End Features -->
                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
                   <a class="nav-link g-py-7 g-px-0" href="?page=ranking">Ranking</a>
                 </li>
+                
                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                  <a class="nav-link g-py-7 g-px-0" href="#">Login</a>
-                </li>
-              </ul>
+                  <a class="nav-link g-py-7 g-px-0" href="http://sinergi.bogorkab.go.id/login" target="blank">Login</a>
+                </li>              </ul>
             </div>
             <!-- End Navigation -->
 

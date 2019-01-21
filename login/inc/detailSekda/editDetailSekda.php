@@ -3,6 +3,11 @@ ob_start();
 $id = abs($_GET['id']);
 
 
+    $sql = "SELECT * FROM tm_detail_data  
+            inner join tm_data on tm_data.id_data= tm_detail_data.id_data
+            where tm_detail_data.id_detail_data = '$id'";
+    $result = mysqli_query($link,$sql);
+    $row = mysqli_fetch_assoc($result);
 if (isset($_POST['update'])){
 
 	  
@@ -10,7 +15,7 @@ if (isset($_POST['update'])){
     $kode_rek_uraian = $_POST['kode_rek_uraian'];
     $uraian = $_POST['uraian'];
     $realisasi = $_POST['realisasi'];
-    $anggaran = $_POST['anggaran'];
+    $anggaran = $row['total_anggaran'];
     $total_persen = ($realisasi / 100) / ($anggaran / 100) * 100; 
     $total_sisa_anggran = $anggaran - $realisasi;
 
@@ -27,10 +32,7 @@ if (isset($_POST['update'])){
 		}
 
 }
-else {
-	$sql = "SELECT * FROM tm_detail_data  where tm_detail_data.id_detail_data = '$id'";
-	$result = mysqli_query($link,$sql);
-	$row = mysqli_fetch_assoc($result);
+
 	
 ?>
 <div class="col-lg-12">
@@ -56,7 +58,7 @@ else {
                         </div>
 
                         <div class="form-group"><label class="col-sm-3 control-label"> Anggaran  </label>
-                          <input type="text" class="form-control" name="anggaran" value="<?php echo $row['anggaran'] ?>" style="width: 70%"  readonly="readonly"/>
+                          <input type="text" class="form-control" name="anggaran" value="<?php echo $row['total_anggaran'] ?>" style="width: 70%"  readonly="readonly"/>
                         </div>
 
 
@@ -81,5 +83,5 @@ else {
 </div>
 
 
-<?php }?>
+
 <?php $editDetailSekda = ob_get_clean();?>

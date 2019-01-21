@@ -84,7 +84,7 @@ if (isset($_POST['masuk'])){
 						<select name="id_kategori" class="form-control" required>
 							<option value="">Pilih Level User</option>
 							<option value="1">Admin</option>
-							<option value="2">Operator</option>
+							
 							
 						</select>
 					</div>

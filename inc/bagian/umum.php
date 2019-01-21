@@ -1,9 +1,13 @@
 <?php
 ob_start();
 
+$queryTotal = mysqli_query($link,"SELECT SUM(total_anggaran) as jumanggaran FROM `tm_data` where tm_data.bagian = 1");
+$resultTotal = mysqli_fetch_array($queryTotal);
+
 ?>
 
 <h1 class="text-center">Bagian Umum</h1>
+<h3 class="text-center">Total : Rp. <?php echo number_format($resultTotal['jumanggaran'],2);  ?></h3>
 <section class="g-mb-150 g-mt-50">
 	<table id="bagian" class="display" width="100%">
 	    <thead>
@@ -11,6 +15,7 @@ ob_start();
 	            <th style="background-color: #47d147;color: #fff;">Program</th>
 	            <th style="background-color: #ffad33;color: #fff;">Kegiatan</th>
 	            <th style="background-color: #444;color: #fff;">Total Anggaran</th>
+				<th style="background-color: #47d147;color: #fff;">Tanggal</th>
 	        </tr>
 	    </thead>
 	    <tbody>
@@ -30,6 +35,7 @@ ob_start();
 	            <td><?php echo $data['nama_program'] ; ?></td>
 	            <td><a href="?page=detailAnggaran&id=<?php echo $data['id_data'] ?>" style="color:blue;"><?php echo $data['nama_kegiatan'] ; ?></a></td>
 	            <td>Rp. <?php echo str_replace(',', '.', $anggaran) ; ?></td>
+				<td><?php echo $data['tgl_update'] ; ?></td>
 	        </tr>
 	        
 	        <?php

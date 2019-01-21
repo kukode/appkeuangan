@@ -1,9 +1,12 @@
 <?php
 ob_start();
+$queryTotal = mysqli_query($link,"SELECT SUM(total_anggaran) as jumanggaran FROM `tm_data` where tm_data.bagian = 2");
+$resultTotal = mysqli_fetch_array($queryTotal);
 
 ?>
 
 <h1 class="text-center">Bagian Keuangan</h1>
+<h3 class="text-center">Total : Rp. <?php echo number_format($resultTotal['jumanggaran'],2);  ?></h3>
 <section class="g-mb-150 g-mt-50">
 	<table id="bagian" class="display" width="100%">
 	    <thead>

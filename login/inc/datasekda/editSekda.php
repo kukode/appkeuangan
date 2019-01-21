@@ -5,18 +5,20 @@ $id = abs($_GET['id']);
 
 if (isset($_POST['update'])){
 
-	$bagian = $_POST['bagian'];
+    $subbelanja = $_POST['subbelanja'];
+	  $bagian = $_POST['bagian'];
     $asisten = $_POST['asisten'];
     $id_program = $_POST['id_program'];
     $id_kegiatan = $_POST['id_kegiatan'];
     $total_anggaran = $_POST['total_anggaran'];
+    $data_sisa = $_POST['data_sisa'];
     $tanggal = date('Y-m-d',strtotime($_POST['tgl_update']));
     
 
     //$total_persen = ($realisasi / 100) / ($anggaran / 100) * 100; 
     //$total_sisa_anggran = $anggaran - $realisasi;
         
-		$query = "update tm_data set bagian='$bagian',asisten='$asisten',tgl_update= '$tanggal',id_program='$id_program',id_kegiatan='$id_kegiatan',total_anggaran='$total_anggaran' where tm_data.id_data = '$id'";
+		$query = "update tm_data set subbelanja='$subbelanja', bagian='$bagian',asisten='$asisten',tgl_update= '$tanggal',id_program='$id_program',id_kegiatan='$id_kegiatan',total_anggaran='$total_anggaran',data_sisa='$data_sisa' where tm_data.id_data = '$id'";
 		$result = mysqli_query($link, $query);
 		if ($result)
 		{
@@ -46,7 +48,17 @@ else {
                 <div class="col-sm-12 b-r">
 
                     <form role="form" method="post" enctype="multipart/form-data">
-                        
+                       
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label">Pilih Sub Belanja <span>*</span></label>
+                        <select name="subbelanja" class="form-control" style="width: 70%">
+                          <option value="1" <?php if($row['subbelanja'] == "1"){ echo "selected";} ?>>Belanja Barang dan Jasa</option>
+                          <option value="2" <?php if($row['subbelanja'] == "2"){ echo "selected";} ?>>Belanja Modal</option>
+                          <option value="3" <?php if($row['subbelanja'] == "3"){ echo "selected";} ?>>Belanja Pegawai</option>
+                          
+                        </select>
+                      </div>
+
                     	<div class="form-group">
                           <label class="col-sm-3 control-label">Pilih Bagian <span>*</span></label>
                           <select name="bagian" class="form-control" style="width: 70%">
@@ -135,6 +147,9 @@ else {
 
                         <div class="form-group"><label class="col-sm-3 control-label">Total Anggaran <span>*</span></label>
                           <input type="text" class="form-control" name="total_anggaran"   style="width: 70%" value="<?php echo $row['total_anggaran'] ?>" />
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Sisa Anggaran <span>*</span></label>
+                          <input type="text" class="form-control" name="data_sisa"   style="width: 70%" value="<?php echo $row['data_sisa'] ?>" />
                         </div>
                        
                         

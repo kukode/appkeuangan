@@ -46,7 +46,7 @@ include 'navigation.php';
 	<link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
 <body>
@@ -59,10 +59,16 @@ include 'navigation.php';
                     	<img class="img img-responsive" src="img/logo-jdn-white.png" style="margin-top:10px;">
                		 </li>
                      <li>
-                        <a href="?page=home"><i class="fa fa-tachometer" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
+                        <a href="?page=home"><i class="fa fa-database" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="?page=dataSekda"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Sekda</span></a>
+                        <a href="?page=dataSekda"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Setda BL</span></a>
+                    </li>
+                    <li>
+                        <a href="?page=datasetdabtl"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Setda BTL</span></a>
+                    </li>
+                    <li>
+                        <a href="?page=dataKepda"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Kepda</span></a>
                     </li>
                      <li>
                         <a href="?page=program"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Program</span></a>
@@ -75,11 +81,11 @@ include 'navigation.php';
                     </li>
                      <li>
                         <a href="?page=dataKepda"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Data Kepda</span></a>
-                    </li>-->
+                    </li>
                     
                     <li>
                         <a href="?page=user"><i class="fa fa-user" aria-hidden="true"></i> <span class="nav-label">Data Operator User</span></a>
-                    </li>
+                    </li>-->
                 	
                 </ul>
 
@@ -95,7 +101,7 @@ include 'navigation.php';
 						<ul class="nav navbar-top-links navbar-right">
                 <li>
                     <form method="post"><a href="login.html" style="color:red;">
-                        <button type="submit" class="btn btn-primary btn-block"  name="logout"><i class="fa fa-sign-out"  aria-hidden="true"></i> Log out</button>
+                        <button type="submit" class="btn btn-primary btn-block"  name="logout"><i class="fa fa-sign-out-alt"  aria-hidden="true"></i> Log out</button>
                     </a></form>
                 </li>
             </ul>
